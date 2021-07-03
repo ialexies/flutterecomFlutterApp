@@ -19,6 +19,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  carousel_pro: ^0.0.13
   cupertino_icons: ^0.1.2
   http: ^0.12.2
 

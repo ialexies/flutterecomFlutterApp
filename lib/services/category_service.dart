@@ -1,13 +1,13 @@
 import 'package:flutterecom/repository/repository.dart';
 
-class SliderService {
+class CategoryService {
   Repository _repository;
 
-  SliderService() {
+  CategoryService() {
     _repository = Repository();
   }
 
-  getSliders() async {
-    return await _repository.httpGet('sliders');
+  getCategories() async {
+    return await _repository.httpGet('categories');
   }
 }
