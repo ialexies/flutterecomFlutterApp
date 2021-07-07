@@ -75,8 +75,8 @@ class _HomeScreenState extends State<HomeScreen> {
       model.id = data['id'];
       model.name = data['name'];
       model.photo = data['photo'];
-      // model.discount = data['price'];
-      model.discount = data['price'].toDouble();
+      model.price = data['price'].toDouble();
+      model.discount = data['discount'].toDouble();
 
       setState(() {
         _productList.add(model);
@@ -89,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('eCommerce App'),
+        title: Text('App'),
         // backgroundColor: Colors,
       ),
       body: Center(
@@ -98,14 +98,20 @@ class _HomeScreenState extends State<HomeScreen> {
             carouselSlider(items),
             Padding(
               padding: EdgeInsets.all(10.0),
-              child: Text('Product Categories'),
+              child: Text(
+                'CATEGORIES',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
             ),
             HomeProductCategories(
               categoryList: _categorlyList,
             ),
             Padding(
               padding: EdgeInsets.all(10.0),
-              child: Text('Hot Products'),
+              child: Text(
+                'HOT',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
             ),
             HomeHotProducts(productList: _productList)
           ],
