@@ -9,6 +9,7 @@ import 'dart:convert';
 
 import 'package:flutterecom/widgets/carousel_slider.dart';
 import 'package:flutterecom/widgets/home_hot_products.dart';
+import 'package:flutterecom/widgets/home_new_products.dart';
 import 'package:flutterecom/widgets/home_product_categories.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -24,6 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   ProductService _productService = ProductService();
   List<Product> _productList = [];
+  List<Product> _newProductList = [];
 
   var items = [];
 
@@ -32,8 +34,8 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     _getAllSliders();
     _getAllCategories();
-
     _getAllHotProducts();
+    _getNewProducts();
   }
 
   _getAllSliders() async {
@@ -82,7 +84,26 @@ class _HomeScreenState extends State<HomeScreen> {
         _productList.add(model);
       });
     });
-    print(result);
+    // print(result);
+  }
+
+  _getNewProducts() async {
+    var newProducts = await _productService.getNewProducts();
+    var result = json.decode(newProducts.body);
+
+    result['data'].forEach((data) {
+      var model = Product();
+      model.id = data['id'];
+      model.name = data['name'];
+      model.photo = data['photo'];
+      model.price = data['price'].toDouble();
+      model.discount = data['discount'].toDouble();
+
+      setState(() {
+        _newProductList.add(model);
+      });
+      // print(result);
+    });
   }
 
   @override
@@ -113,7 +134,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
-            HomeHotProducts(productList: _productList)
+            HomeHotProducts(productList: _productList),
+            Padding(
+              padding: EdgeInsets.all(10.0),
+              child: Text(
+                'New',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+            HomeNewProducts(newProductsList: _newProductList),
           ],
         ),
       ),

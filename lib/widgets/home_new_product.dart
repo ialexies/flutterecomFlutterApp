@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterecom/screens/product_detail.dart';
 
-class HomeHotProduct extends StatefulWidget {
-  // const HomeHotProduct({Key? key}) : super(key: key);
+class HomeNewProduct extends StatefulWidget {
+  // const HomeNewProduct({Key? key}) : super(key: key);
 
   final String productName;
   final String productPhoto;
@@ -11,17 +11,17 @@ class HomeHotProduct extends StatefulWidget {
   final double productDiscount;
   // final String productBaseurl;
 
-  HomeHotProduct(
+  HomeNewProduct(
     this.productName,
     this.productPhoto,
     this.productPrice,
     this.productDiscount,
   );
   @override
-  _HomeHotProductState createState() => _HomeHotProductState();
+  _HomeNewProductState createState() => _HomeNewProductState();
 }
 
-class _HomeHotProductState extends State<HomeHotProduct> {
+class _HomeNewProductState extends State<HomeNewProduct> {
   @override
   Widget build(BuildContext context) {
     return Container(
